@@ -593,7 +593,7 @@
     const listingsSection = document.querySelector(".property-listings#properties");
     listingsSection.innerHTML = "";
     if (filtered.length === 0) {
-      listingsSection.innerHTML = <div style="grid-column:1/-1;text-align:center;font-size:1.3rem;color:#888;margin:30px 0;">${langDict[currentLang].noMatch}</div>;
+      listingsSection.innerHTML = `<div style="grid-column:1/-1;text-align:center;font-size:1.3rem;color:#888;margin:30px 0;">${langDict[currentLang].noMatch}</div>`;
       return;
     }
     filtered.forEach((prop) => {
@@ -743,7 +743,7 @@
     const favSec = document.getElementById("favoriteList");
     favSec.innerHTML = "";
     if (favList.length === 0) {
-      favSec.innerHTML = <div style="grid-column:1/-1;text-align:center;font-size:1.1rem;color:#aaa;margin:16px 0;">${langDict[currentLang].noFav}</div>;
+      favSec.innerHTML = `<div style="grid-column:1/-1;text-align:center;font-size:1.1rem;color:#aaa;margin:16px 0;">${langDict[currentLang].noFav}</div>`;
     }
     favList.forEach((prop) => {
       const card = document.createElement("div");
@@ -801,7 +801,7 @@
 
   function showPropertyMap(propId, isFav = false) {
     const prop = properties.find((p) => p.id === propId);
-    const mapId = isFav ? map-prop-${propId}-fav : map-prop-${propId};
+    const mapId = isFav ? `map-prop-${propId}-fav` : `map-prop-${propId}`;
 
     // Hide all maps first
     document.querySelectorAll(".property-map").forEach((div) => div.classList.remove("active"));
