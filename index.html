@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Properties Near Nagpur</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@500&display=swap" rel="stylesheet" />
+<style>
+  body {
+    font-family: 'Poppins', 'Segoe UI', Arial, sans-serif;
+    margin: 0;
+    background: #f5f6fa;
+    color: #333;
+  }
+  header {
+    position: relative;
+    background: linear-gradient(to right, rgba(34,40,49,0.74), rgba(79, 86, 92, 0.8)),
+      url('https://i.postimg.cc/1tWYqGcG/header-image.jpg') center/cover no-repeat;
+    color: #fff;
+    padding: 56px 0 22px 0;
+    text-align: center;
+    border-bottom-left-radius: 32px;
+    border-bottom-right-radius: 32px;
+    min-height: 300px;
+    box-shadow: 0 3px 15px 0 #81818152;
+    overflow: hidden;
+  }
+  .lang-switcher {
+    position: fixed;
+    top: 18px;
+    right: 14px;
+    z-index: 25;
+    display: flex;
+    gap: 8px;
+    background: rgba(232, 244, 255, 0.88);
+    border-radius: 28px;
+    box-shadow: 0 1px 6px #6663;
+    padding: 5px 10px;
+  }
+  .lang-btn {
+    background: transparent;
+    color: #2566b8;
+    border: none;
+    border-radius: 19px;
+    font-size: 1rem;
+    font-family: inherit;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 4px 10px;
+    transition: background 0.18s, color 0.18s;
+  }
+  .lang-btn.active,
+  .lang-btn:focus,
+  .lang-btn:hover {
+    background: #ffe074;
+    color: #222d3b;
+  }
+  header h1 {
+    font-family: 'Playfair Display', serif !important;
+    font-size: 2.2rem;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 15px #28406730;
+    font-weight: 700;
+    margin: 0 0 50px 0;
+  }
+  header p {
+    font-size: 1.15rem;
+    letter-spacing: 0.3px;
+    color: #eff2f7;
+    font-weight: 500;
+    text-shadow: 0 2px 5px #0002;
+    margin: 0 0 150px 0;
+  }
+  nav {
+    margin-top: 18px;
+  }
+  nav a {
+    text-decoration: none;
+    margin: 0 13px;
+    font-weight: 500;
+    color: #fff;
+    transition: color 0.2s;
+  }
+  nav a.active,
+  nav a:focus {
+    color: #ffe86b;
+  }
+  nav a:hover {
+    color: #ffe86b;
+  }
+  .filters {
+    margin: 28px auto 0 auto;
+    max-width: 100vw;
+    width: 99vw;
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    white-space: nowrap;
+    background: #e4effb;
+    border-radius: 12px;
+    padding: 8px 10px;
+    box-shadow: 0 1px 7px #bedbfa66;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .filters::-webkit-scrollbar {
+    display: none;
+  }
+  .filters label {
+    font-size: 1rem;
+    font-weight: 500;
+    margin-right: 2px;
+    color: #154c6d;
+    display: inline-block;
+  }
+  .filters select {
+    padding: 5px 8px;
+    font-size: 1rem;
+    background: #fff;
+    border: 1px solid #b7d0ed;
+    border-radius: 6px;
+    min-width: 92px;
+    outline: none;
+    margin-left: 6px;
+    margin-right: 0;
+    box-shadow: 0 1px 1px #bdd6ed33;
+  }
+  .property-listings {
+    max-width: 1100px;
+    margin: 32px auto 0 auto;
+    display: grid;
+    gap: 36px;
+    grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+  }
+  .property-card {
+    background: #fff;
+    border-radius: 16px;
+    box-shadow: 0 4px 16px #e0e6ed33;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 9px;
+    position: relative;
+  }
+  .property-image {
+    width: 100%;
+    height: 210px;
+    object-fit: cover;
+    background: #ececec;
+  }
+  .favorite-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    font-size: 1.75rem;
+    background: rgba(255, 255, 255, 0.85);
+    border: none;
+    cursor: pointer;
+    color: #e3ad25;
+    z-index: 6;
+    border-radius: 50%;
+    box-shadow: 0 1px 7px #866b3c3d;
+    width: 37px;
+    aspect-ratio: 1/1;
+    text-align: center;
+    line-height: 1.6;
+    transition: background 0.17s;
+  }
+  .favorite-btn.favorited {
+    color: #de3349;
+  }
+  .property-content {
+    padding: 15px 16px 10px 16px;
+    flex-grow: 1;
+  }
+  .property-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.15rem;
+    color: #1866c3;
+    font-weight: 600;
+    margin-bottom: 5px;
+    letter-spacing: 0.5px;
+  }
+  .property-location {
+    font-size: 1.05rem;
+    color: #256a35;
+    margin-bottom: 6px;
+    font-weight: 600;
+  }
+  .property-features {
+    font-size: 1.03rem;
+    color: #293949;
+    font-weight: 500;
+    margin-bottom: 5px;
+  }
+  .property-details {
+    font-size: 0.96rem;
+    color: #475867;
+    margin-bottom: 6px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .property-details span {
+    font-weight: 700;
+    color: #154c6d;
+  }
+  .property-price {
+    font-size: 1.13rem;
+    font-weight: 700;
+    color: #147857;
+    margin-bottom: 2px;
+    letter-spacing: 0.5px;
+  }
+  .show-on-map-btn {
+    background: #dde6f4;
+    padding: 6px 13px;
+    border: none;
+    margin-top: 4px;
+    border-radius: 8px;
+    color: #256aac;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .property-map {
+    width: 100%;
+    max-width: 500px;
+    min-height: 200px;
+    height: 230px;
+    margin: 20px auto 10px auto;
+    border-radius: 18px;
+    box-shadow: 0 2px 10px #bedbfa66;
+    display: none;
+  }
+  .property-map.active {
+    display: block;
+  }
+  .favorites-section {
+    max-width: 1100px;
+    margin: 40px auto 0 auto;
+    display: none;
+  }
+  .favorites-section.active {
+    display: block;
+  }
+  .favorite-title {
+    font-size: 1.18rem;
+    color: #1866c3;
+    margin-top: 20px;
+    text-align: center;
+  }
+  #mainContent {
+    display: block;
+  }
+  @media (max-width: 700px) {
+    header h1 {
+      font-size: 1.28rem;
+    }
+    .filters {
+      padding: 7px 1vw 7px 2vw;
+    }
+    .property-image {
+      height: 140px;
+    }
+    .property-title {
+      font-size: 1.02rem;
+    }
+    .property-content {
+      padding: 11px 8px 4px 11px;
+    }
+    .favorite-btn {
+      font-size: 1.38rem;
+      right: 12px;
+      top: 13px;
+      width: 32px;
+    }
+  }
+  footer {
+    background: #1866c3;
+    color: #fff;
+    text-align: center;
+    padding: 36px 20px 18px 20px;
+    margin-top: 64px;
+    border-top-left-radius: 32px;
+    border-top-right-radius: 32px;
+    box-shadow: 0 -2px 16px #bedbfa77;
+    font-size: 1rem;
+  }
+  .footer-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+  }
+  .contact-details {
+    margin: 18px 0 0 0;
+    font-size: 1.08rem;
+    line-height: 1.4;
+  }
+  .social-links a {
+    color: #ffe86b;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 1.25rem;
+  }
+  .slider {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    overflow: hidden;
+  }
+  .slider img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+  }
+  .slider img.active {
+    opacity: 1;
+  }
+  .slider .prev,
+  .slider .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.7);
+    border: none;
+    font-size: 24px;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 50%;
+    user-select: none;
+  }
+  .slider .prev {
+    left: 10px;
+  }
+  .slider .next {
+    right: 10px;
+  }
+</style>
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_GOOGLE_MAPS_API_KEY"></script>
+</head>
+<body>
+<header>
+  <h1 id="webTitle">Dream Lands Near Nagpur</h1>
+  <p id="webSubtitle">Your trusted partner for property and land dealings in Nagpur & nearby areas.</p>
+  <nav>
+    <a href="#properties" id="propNav" class="nav-link active">Properties</a>
+    <a href="#favorites" id="favoritesNav" class="nav-link">Favourites</a>
+    <a href="#contact" id="contactNav" class="nav-link">Contact</a>
+  </nav>
+  <div class="lang-switcher">
+    <button class="lang-btn active" data-lang="en">EN</button>
+    <button class="lang-btn" data-lang="hi">हिंदी</button>
+    <button class="lang-btn" data-lang="mr">मराठी</button>
+  </div>
+</header>
+
+<div id="mainContent">
+  <div class="filters">
+    <label><span id="acresLbl">Acres:</span>
+      <select id="acresFilter">
+        <option value="any">Any</option>
+        <option value="un5">Under 5 acres</option>
+        <option value="un10">Under 10 acres</option>
+        <option value="up10">More than 10 acres</option>
+      </select>
+    </label>
+    <label><span id="priceLbl">Price:</span>
+      <select id="priceFilter">
+        <option value="any">Any</option>
+        <option value="under10">Under ₹10L</option>
+        <option value="10to20">₹10L-₹20L</option>
+        <option value="20to40">₹20L-₹40L</option>
+        <option value="over40">Over ₹40L</option>
+      </select>
+    </label>
+    <label><span id="distanceLbl">Distance:</span>
+      <select id="distanceFilter">
+        <option value="any">Any</option>
+        <option value="0to5">0-5km</option>
+        <option value="5to15">5-15km</option>
+        <option value="15up">More than 15km</option>
+      </select>
+    </label>
+  </div>
+  <section id="properties" class="property-listings"></section>
+</div>
+
+<div id="favoritesPage" class="favorites-section">
+  <div class="favorite-title" id="favTitle">My Saved Properties ★</div>
+  <div class="property-listings" id="favoriteList"></div>
+</div>
+
+<footer id="contact">
+  <div class="footer-title" id="footerTitle">Contact Us</div>
+  <div class="contact-details" id="contactDetails"></div>
+  <div class="social-links" style="margin-top: 12px;">
+    <a href="#">WhatsApp</a> |
+    <a href="#">Facebook</a> |
+    <a href="https://www.instagram.com/acres.com.nagpur">Instagram</a>
+  </div>
+  <div style="margin-top: 18px; font-size: 0.95rem;">&copy; 2025 Dream Lands Nagpur. All rights reserved.</div>
+</footer>
+
+<script>
+  const langDict = {
+    en: {
+      webTitle: "Dream Lands Near Nagpur",
+      webSubtitle: "Your trusted partner for property and land dealings in Nagpur & nearby areas.",
+      propNav: "Properties",
+      favoritesNav: "Favourites",
+      contactNav: "Contact",
+      acresLbl: "Acres:",
+      priceLbl: "Price:",
+      distanceLbl: "Distance:",
+      favTitle: "My Saved Properties ★",
+      footerTitle: "Contact Us",
+      contactDetails:
+        "Call: +91 8317209720<br>Email: amaansheikh0909@gmail.com<br>Nagpur",
+      favorite: "Add to Favorites",
+      favorited: "Remove from Favorites",
+      showMapBtn: "Show on Map",
+      noMatch: "No properties match your filters.",
+      noFav: "No properties saved yet.",
+    },
+    hi: {
+      webTitle: "नागपुर के पास ड्रीम लैण्ड्स",
+      webSubtitle: "नागपुर और आस-पास की संपत्तियों के लिए आपका विश्वसनीय भागीदार।",
+      propNav: "संपत्तियाँ",
+      favoritesNav: "पसंदीदा",
+      contactNav: "संपर्क करें",
+      acresLbl: "एकड़:",
+      priceLbl: "कीमत:",
+      distanceLbl: "दूरी:",
+      favTitle: "मेरी सेव्ड संपत्तियाँ ★",
+      footerTitle: "संपर्क करें",
+      contactDetails:
+        "कॉल: +91 8317209720<br>ईमेल: amaansheikh0909@gmail.com<br>नागपुर",
+      favorite: "पसंदीदा में जोड़ें",
+      favorited: "पसंदीदा से हटाएँ",
+      showMapBtn: "नक्शा दिखाएँ",
+      noMatch: "आपकी फिल्टर के अनुसार कोई संपत्ति नहीं मिली।",
+      noFav: "कोई सेव्ड संपत्ति नहीं।",
+    },
+    mr: {
+      webTitle: "नागपूरजवळील ड्रीम लँड्स",
+      webSubtitle: "नागपूर व परिसरातील जमिनीच्या आणि मालमत्तांच्या व्यवहारांसाठी आपला विश्वासू भागीदार.",
+      propNav: "मालमत्ता",
+      favoritesNav: "जतन केलेल्या",
+      contactNav: "संपर्क",
+      acresLbl: "एकर:",
+      priceLbl: "किंमत:",
+      distanceLbl: "अंतर:",
+      favTitle: "माझ्या जतन केलेल्या मालमत्ता ★",
+      footerTitle: "संपर्क साधा",
+      contactDetails:
+        "कॉल: +91 8317209720<br>ईमेल: amaansheikh0909@gmail.com<br>नागपूर",
+      favorite: "जतन करा",
+      favorited: "जतन बाजूला काढा",
+      showMapBtn: "नकाशावर दाखवा",
+      noMatch: "तुमच्या निवडीनुसार मालमत्ता नाहीत.",
+      noFav: "अद्याप कोणत्याही मालमत्तेचे जतन केलेले नाही.",
+    },
+  };
+  let currentLang = "en";
+
+  function setLang(lang) {
+    currentLang = lang;
+    for (const [id, val] of Object.entries(langDict[lang])) {
+      const el = document.getElementById(id);
+      if (el) {
+        if (id === "contactDetails") el.innerHTML = val;
+        else el.textContent = val;
+      }
+    }
+    document.getElementById("favoritesNav").textContent = langDict[lang].favoritesNav;
+    document.querySelectorAll(".lang-btn").forEach((btn) => {
+      if (btn.dataset.lang === lang) btn.classList.add("active");
+      else btn.classList.remove("active");
+    });
+    renderProperties(currentProperties);
+    renderFavorites();
+  }
+
+  document.querySelectorAll(".lang-btn").forEach((btn) => {
+    btn.onclick = () => setLang(btn.dataset.lang);
+  });
+
+  // Properties with professional descriptions
+  const properties = [
+    {
+      id: 1,
+      title: "Prime Agricultural Land",
+      location: "Kachari Sawanga, Kondhali",
+      features:
+        "Premium coagriculture land, Road FRONTAGE, clear legal titles, ideal for farmhouse/investment development with good connectivity of road.",
+      price: 1200000,
+      acres: 4.5,
+      distanceKm: 52,
+      lat: 21.1167,
+      lng: 79.0833,
+      images: [
+        "https://i.postimg.cc/wxf2804b/Kachari-Sawanga-kondhali1.jpg",
+        "https://i.postimg.cc/d36PCNp6/Kachari-Sawanga-kondhali2.jpg",
+        "https://i.postimg.cc/JhNTtD9c/Kachari-Sawanga-kondhali3.jpg",
+        "https://i.postimg.cc/tRSB1Hmf/Kachari-Sawanga-kondhali4.jpg",
+      ],
+    },
+    {
+      id: 2,
+      title: "3 Acres Land, Lake touch",
+      location: "Ladgaon, Katol",
+      features:
+        "Lake touch with beautiful surrounding and 2nd land from Dambar road, utility connections ready.",
+      price: 2000000,
+      acres: 3,
+      distanceKm: 62,
+      lat: 21.1014,
+      lng: 79.0149,
+      images: [
+        "https://i.postimg.cc/MpCGd6Wv/Ladgaon-katol1.jpg",
+        "https://i.postimg.cc/90gmTV8X/Ladgaon-katol2.jpg",
+        "https://i.postimg.cc/zfwq7Ttc/Ladgaon-katol3.jpg",
+        "https://i.postimg.cc/bYVpmygp/Ladgaon-katol4.jpg",
+        "https://i.postimg.cc/0Nvszbkd/Ladgaon-katol8.jpg",
+        "https://i.postimg.cc/SKkBy3dg/Ladgaon-katol5.jpg",
+        "https://i.postimg.cc/X7FNXMKW/Ladgaon-katol6.jpg",
+        "https://i.postimg.cc/Sxfy7Wtt/Ladgaon-katol7.jpg",
+      ],
+    },
+    {
+      id: 3,
+      title: "Farmland (Secured)",
+      location: "Kamptee Road, Nagpur",
+      features:
+        "Secure 2-acre agricultural parcel, high-yield soil, complete periphery fencing, round-the-clock access.",
+      price: 1450000,
+      acres: 2.0,
+      distanceKm: 20,
+      lat: 21.2116,
+      lng: 79.1757,
+      images: [
+        "https://i.postimg.cc/wxf2804b/Kachari-Sawanga-kondhali1.jpg",
+        "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80",
+      ],
+    },
+    {
+      id: 4,
+      title: "Township Approved Plot",
+      location: "Manewada-Besa, Nagpur",
+      features:
+        "Fully approved, clear title, plots from 1,000 sq.ft up, integrated green park, high-growth residential zone.",
+      price: 1200000,
+      acres: 0.5,
+      distanceKm: 5,
+      lat: 21.0995,
+      lng: 79.0200,
+      images: [
+        "https://i.postimg.cc/wxf2804b/Kachari-Sawanga-kondhali1.jpg",
+        "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80",
+      ],
+    },
+    {
+      id: 5,
+      title: "Township Approved Plot",
+      location: "Manewada-Besa, Nagpur",
+      features:
+        "Fully approved, clear title, plots from 1,000 sq.ft up, integrated green park, high-growth residential zone.",
+      price: 1200000,
+      acres: 0.5,
+      distanceKm: 5,
+      lat: 21.0995,
+      lng: 79.0200,
+      images: [
+        "https://i.postimg.cc/wxf2804b/Kachari-Sawanga-kondhali1.jpg",
+        "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=600&q=80",
+      ],
+    },
+  ];
+
+  let currentProperties = [...properties];
+
+  function formatPrice(num) {
+    return "₹" + num.toLocaleString();
+  }
+
+  function renderProperties(filtered) {
+    currentProperties = filtered;
+    const listingsSection = document.querySelector(".property-listings#properties");
+    listingsSection.innerHTML = "";
+    if (filtered.length === 0) {
+      listingsSection.innerHTML = <div style="grid-column:1/-1;text-align:center;font-size:1.3rem;color:#888;margin:30px 0;">${langDict[currentLang].noMatch}</div>;
+      return;
+    }
+    filtered.forEach((prop) => {
+      const fav = isFavorited(prop.id);
+      const card = document.createElement("div");
+      card.className = "property-card";
+      card.innerHTML = `
+        <button class="favorite-btn${fav ? " favorited" : ""}" data-id="${prop.id}" title="${
+        fav ? langDict[currentLang].favorited : langDict[currentLang].favorite
+      }">${fav ? "★" : "☆"}</button>
+        <div class="slider">
+          ${prop.images
+            .map(
+              (img, index) => `
+            <img src="${img}" class="slide ${index === 0 ? "active" : ""}" alt="${prop.title}">
+          `
+            )
+            .join("")}
+          <button class="prev">❮</button>
+          <button class="next">❯</button>
+        </div>
+        <div class="property-content">
+          <div class="property-title">${prop.title}</div>
+          <div class="property-location">${prop.location}</div>
+          <div class="property-features">${prop.features}</div>
+          <div class="property-details"><span>${langDict[currentLang].acresLbl.replace(":", "")}</span> ${prop.acres} | <span>${
+        langDict[currentLang].distanceLbl.replace(":", "")
+      }</span> ${prop.distanceKm} km</div>
+          <div class="property-price"><span>${langDict[currentLang].priceLbl.replace(":", "")}</span> ${formatPrice(
+        prop.price
+      )}</div>
+          <button class="show-on-map-btn" data-map="${prop.id}">${langDict[currentLang].showMapBtn}</button>
+          <div id="map-prop-${prop.id}" class="property-map"></div>
+        </div>`;
+      listingsSection.appendChild(card);
+    });
+
+    // Favorite buttons event listeners
+    document.querySelectorAll(".favorite-btn").forEach((btn) => {
+      btn.onclick = function () {
+        const propId = parseInt(btn.getAttribute("data-id"));
+        toggleFavorite(propId);
+        renderProperties(currentProperties);
+        renderFavorites();
+      };
+    });
+
+    // Show on map buttons event listeners
+    document.querySelectorAll(".show-on-map-btn").forEach((btn) => {
+      btn.onclick = function () {
+        const id = parseInt(btn.getAttribute("data-map"));
+        showPropertyMap(id);
+      };
+    });
+
+    initSliders();
+  }
+
+  function initSliders() {
+    document.querySelectorAll(".property-card").forEach((card) => {
+      const slides = card.querySelectorAll(".slide");
+      let currentIndex = 0;
+      const nextBtn = card.querySelector(".next");
+      const prevBtn = card.querySelector(".prev");
+
+      function showSlide(index) {
+        slides.forEach((slide, i) => {
+          slide.classList.toggle("active", i === index);
+        });
+      }
+
+      function nextSlide() {
+        currentIndex = (currentIndex + 1) % slides.length;
+        showSlide(currentIndex);
+      }
+
+      function prevSlide() {
+        currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+        showSlide(currentIndex);
+      }
+
+      nextBtn.addEventListener("click", nextSlide);
+      prevBtn.addEventListener("click", prevSlide);
+
+      // Auto-slide every 3 seconds
+      setInterval(nextSlide, 3000);
+    });
+  }
+
+  function filterProperties() {
+    let acres = document.getElementById("acresFilter").value;
+    let price = document.getElementById("priceFilter").value;
+    let distance = document.getElementById("distanceFilter").value;
+
+    let filtered = properties.filter((p) => {
+      let acresMatch =
+        acres === "any" ||
+        (acres === "un5" && p.acres < 5) ||
+        (acres === "un10" && p.acres <= 10) ||
+        (acres === "up10" && p.acres > 10);
+
+      let priceMatch =
+        price === "any" ||
+        (price === "under10" && p.price < 1000000) ||
+        (price === "10to20" && p.price >= 1000000 && p.price <= 2000000) ||
+        (price === "20to40" && p.price > 2000000 && p.price <= 4000000) ||
+        (price === "over40" && p.price > 4000000);
+
+      let distanceMatch =
+        distance === "any" ||
+        (distance === "0to5" && p.distanceKm >= 0 && p.distanceKm <= 5) ||
+        (distance === "5to15" && p.distanceKm > 5 && p.distanceKm <= 15) ||
+        (distance === "15up" && p.distanceKm > 15);
+
+      return acresMatch && priceMatch && distanceMatch;
+    });
+    renderProperties(filtered);
+  }
+
+  document.getElementById("acresFilter").addEventListener("change", filterProperties);
+  document.getElementById("priceFilter").addEventListener("change", filterProperties);
+  document.getElementById("distanceFilter").addEventListener("change", filterProperties);
+
+  // Favorites logic
+  function getFavorites() {
+    return JSON.parse(localStorage.getItem("wishlist") || "[]");
+  }
+
+  function isFavorited(id) {
+    return getFavorites().includes(id);
+  }
+
+  function toggleFavorite(id) {
+    let favs = getFavorites();
+    if (favs.includes(id)) {
+      favs = favs.filter((fid) => fid !== id);
+    } else {
+      favs.push(id);
+    }
+    localStorage.setItem("wishlist", JSON.stringify(favs));
+  }
+
+  function renderFavorites() {
+    const favList = getFavorites()
+      .map((id) => properties.find((p) => p.id === id))
+      .filter(Boolean);
+    const favSec = document.getElementById("favoriteList");
+    favSec.innerHTML = "";
+    if (favList.length === 0) {
+      favSec.innerHTML = <div style="grid-column:1/-1;text-align:center;font-size:1.1rem;color:#aaa;margin:16px 0;">${langDict[currentLang].noFav}</div>;
+    }
+    favList.forEach((prop) => {
+      const card = document.createElement("div");
+      card.className = "property-card";
+      card.innerHTML = `
+        <button class="favorite-btn favorited" data-id="${prop.id}" title="${langDict[currentLang].favorited}">★</button>
+        <div class="slider">
+          ${prop.images
+            .map(
+              (img, index) => `
+            <img src="${img}" class="slide ${index === 0 ? "active" : ""}" alt="${prop.title}">
+          `
+            )
+            .join("")}
+          <button class="prev">❮</button>
+          <button class="next">❯</button>
+        </div>
+        <div class="property-content">
+          <div class="property-title">${prop.title}</div>
+          <div class="property-location">${prop.location}</div>
+          <div class="property-features">${prop.features}</div>
+          <div class="property-details"><span>${langDict[currentLang].acresLbl.replace(":", "")}</span> ${prop.acres} | <span>${
+        langDict[currentLang].distanceLbl.replace(":", "")
+      }</span> ${prop.distanceKm} km</div>
+          <div class="property-price"><span>${langDict[currentLang].priceLbl.replace(":", "")}</span> ${formatPrice(
+        prop.price
+      )}</div>
+          <button class="show-on-map-btn" data-map="${prop.id}">${langDict[currentLang].showMapBtn}</button>
+          <div id="map-prop-${prop.id}-fav" class="property-map"></div>
+        </div>`;
+      favSec.appendChild(card);
+    });
+
+    favSec.querySelectorAll(".favorite-btn").forEach((btn) => {
+      btn.onclick = function () {
+        const propId = parseInt(btn.getAttribute("data-id"));
+        toggleFavorite(propId);
+        renderProperties(currentProperties);
+        renderFavorites();
+      };
+    });
+
+    favSec.querySelectorAll(".show-on-map-btn").forEach((btn) => {
+      btn.onclick = function () {
+        const id = parseInt(btn.getAttribute("data-map"));
+        showPropertyMap(id, true);
+      };
+    });
+
+    initSliders();
+  }
+
+  // Map handling using Google Maps
+  let propertyMaps = {}; // id: instance
+
+  function showPropertyMap(propId, isFav = false) {
+    const prop = properties.find((p) => p.id === propId);
+    const mapId = isFav ? map-prop-${propId}-fav : map-prop-${propId};
+
+    // Hide all maps first
+    document.querySelectorAll(".property-map").forEach((div) => div.classList.remove("active"));
+
+    // Show selected map container
+    const mapDiv = document.getElementById(mapId);
+    mapDiv.classList.add("active");
+
+    if (propertyMaps[mapId]) {
+      google.maps.event.trigger(propertyMaps[mapId], "resize");
+      propertyMaps[mapId].setCenter({ lat: prop.lat, lng: prop.lng });
+    } else {
+      propertyMaps[mapId] = new google.maps.Map(mapDiv, {
+        center: { lat: prop.lat, lng: prop.lng },
+        zoom: 14,
+      });
+      new google.maps.Marker({
+        map: propertyMaps[mapId],
+        position: { lat: prop.lat, lng: prop.lng },
+        title: prop.title,
+      });
+    }
+  }
+
+  // Navigation & page switching
+  function showPage(pageName) {
+    document.getElementById("mainContent").style.display = "none";
+    document.getElementById("favoritesPage").style.display = "none";
+    document.querySelectorAll(".nav-link").forEach((link) => link.classList.remove("active"));
+
+    if (pageName === "properties") {
+      document.getElementById("mainContent").style.display = "block";
+      document.getElementById("propNav").classList.add("active");
+    } else if (pageName === "favorites") {
+      document.getElementById("favoritesPage").style.display = "block";
+      document.getElementById("favoritesNav").classList.add("active");
+    } else if (pageName === "contact") {
+      document.getElementById("mainContent").style.display = "block";
+      document.getElementById("contactNav").classList.add("active");
+      document.getElementById("contact").scrollIntoView({ behavior: "smooth" });
+    }
+  }
+
+  document.getElementById("propNav").onclick = function (e) {
+    e.preventDefault();
+    showPage("properties");
+    window.scrollTo(0, 0);
+  };
+
+  document.getElementById("favoritesNav").onclick = function (e) {
+    e.preventDefault();
+    showPage("favorites");
+    window.scrollTo(0, 0);
+  };
+
+  document.getElementById("contactNav").onclick = function (e) {
+    e.preventDefault();
+    showPage("contact");
+  };
+
+  function resetPages() {
+    document.getElementById("mainContent").style.display = "block";
+    document.getElementById("favoritesPage").style.display = "none";
+    document.querySelectorAll(".nav-link").forEach((link) => link.classList.remove("active"));
+    document.getElementById("propNav").classList.add("active");
+  }
+
+  window.onload = function () {
+    setLang(currentLang);
+    renderProperties(properties);
+    renderFavorites();
+    resetPages();
+  };
+</script>
+</body>
+</html>
